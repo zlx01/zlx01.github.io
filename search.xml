@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/03/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>hello</tag>
+        <tag>world</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建个人博客</title>
     <url>/2020/03/18/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<ul>
@@ -176,6 +203,13 @@
 <li>修改<mark>主题配置文件</mark></li>
 </ul>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Show number of visitors of each article.</span></span><br><span class="line"><span class="comment"># You can visit https://leancloud.cn to get AppID and AppKey.</span></span><br><span class="line"><span class="comment"># AppID and AppKey are recommended to be the same as valine's for counter compatibility.</span></span><br><span class="line"><span class="comment"># Do not enable both `valine.visitor` and `leancloud_visitors`.</span></span><br><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 修改成自己的app_id和app_key</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="string">&lt;app-id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="string">&lt;app-key&gt;</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line">  <span class="comment"># If you don't care about security in leancloud counter and just want to use it directly</span></span><br><span class="line">  <span class="comment"># (without hexo-leancloud-counter-security plugin), set `security` to `false`.</span></span><br><span class="line">  <span class="attr">security:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">betterPerformance:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>统计阅读量指定域名</li>
+</ul>
+<p>修改<code>xxx\themes\next\layout\_third-party\statistics\lean-analytics.swig</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (CONFIG.page.isPost) &#123;</span><br><span class="line">	if (CONFIG.hostname !&#x3D;&#x3D; location.hostname) return;</span><br><span class="line">	addCount(Counter);</span><br><span class="line">&#125; else if (document.querySelectorAll(&#39;.post-title-link&#39;).length &gt;&#x3D; 1) &#123;</span><br><span class="line">	showTime(Counter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (CONFIG.page.isPost) &#123;</span><br><span class="line">	if (&#39;zlx01.github.io&#39; &#x3D;&#x3D;&#x3D; location.hostname || &#39;lancekee.xyz&#39; &#x3D;&#x3D;&#x3D; location.hostname)&#123;</span><br><span class="line">		addCount(Counter);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; else if (document.querySelectorAll(&#39;.post-title-link&#39;).length &gt;&#x3D; 1) &#123;</span><br><span class="line">	showTime(Counter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="不蒜子统计"><a class="markdownIt-Anchor" href="#不蒜子统计"></a> 不蒜子统计</h4>
 <h4 id="百度统计"><a class="markdownIt-Anchor" href="#百度统计"></a> 百度统计</h4>
 <h4 id="腾讯分析"><a class="markdownIt-Anchor" href="#腾讯分析"></a> 腾讯分析</h4>
@@ -266,33 +300,6 @@
         <tag>hexo</tag>
         <tag>next</tag>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/03/17/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-      <tags>
-        <tag>hello</tag>
-        <tag>world</tag>
       </tags>
   </entry>
 </search>
