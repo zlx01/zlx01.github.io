@@ -537,9 +537,6 @@
       var visitors = document.querySelector('.leancloud_visitors');
       var url = decodeURI(visitors.id);
       var title = visitors.dataset.flagTitle;
-      console.log(visitors);
-      console.log(url);
-      console.log(title);
 
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
         .then(response => response.json())
@@ -594,7 +591,6 @@
     .then(response => response.json())
     .then(({ api_server }) => {
       var Counter = (method, url, data) => {
-        console.log({ api_server });
         return fetch(`https://${api_server}/1.1${url}`, {
           method,
           headers: {
@@ -606,8 +602,9 @@
         });
       };
       if (CONFIG.page.isPost) {
-        if (CONFIG.hostname !== location.hostname) return;
-        addCount(Counter);
+        if ('zlx01.github.io' === location.hostname || 'lancekee.xyz' === location.hostname){
+            addCount(Counter);
+        }
       } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
