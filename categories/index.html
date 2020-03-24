@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Lee">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-16T14:31:19.000Z">
-<meta property="article:modified_time" content="2020-03-16T14:33:28.213Z">
+<meta property="article:modified_time" content="2020-03-16T14:33:28.000Z">
 <meta property="article:author" content="Lee">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Spring Boot">
@@ -133,11 +133,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">2</span></a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -395,6 +390,9 @@
       var visitors = document.querySelector('.leancloud_visitors');
       var url = decodeURI(visitors.id);
       var title = visitors.dataset.flagTitle;
+      console.log(visitors);
+      console.log(url);
+      console.log(title);
 
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
         .then(response => response.json())
@@ -449,6 +447,7 @@
     .then(response => response.json())
     .then(({ api_server }) => {
       var Counter = (method, url, data) => {
+        console.log({ api_server });
         return fetch(`https://${api_server}/1.1${url}`, {
           method,
           headers: {
@@ -518,17 +517,6 @@
   
 
   
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://Lee.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
