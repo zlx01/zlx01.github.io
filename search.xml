@@ -31,8 +31,7 @@
     <title>搭建个人博客</title>
     <url>/2020/03/18/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<ul>
-<li>技术栈：Hexo+GitHub Page</li>
-<li>工具：nodejs，npm，git</li>
+<li>技术：Hexo+Nodejs+npm+git+GitHub Page</li>
 </ul>
 <a id="more"></a>
 <h2 id="hexo"><a class="markdownIt-Anchor" href="#hexo"></a> Hexo</h2>
@@ -256,7 +255,7 @@
 <p><a href="https://github.com/theme-next/awesome-next" target="_blank" rel="noopener">https://github.com/theme-next/awesome-next</a></p>
 <h2 id="部署到github"><a class="markdownIt-Anchor" href="#部署到github"></a> 部署到GitHub</h2>
 <h3 id="1新建仓库"><a class="markdownIt-Anchor" href="#1新建仓库"></a> 1.新建仓库</h3>
-<p>在GitHub新建公开仓库，仓库名字格式为：“<a href="http://username.github.io" target="_blank" rel="noopener">username.github.io</a>”，我的是<code>zlx.github.io</code></p>
+<p>在GitHub新建公开仓库，仓库名字格式为：“<a href="http://username.github.io" target="_blank" rel="noopener">username.github.io</a>”，我的是<code>zlx01.github.io</code></p>
 <h3 id="2修改站点配置文件-2"><a class="markdownIt-Anchor" href="#2修改站点配置文件-2"></a> 2.修改<mark>站点配置文件</mark></h3>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:zlx01/zlx01.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 <h3 id="3使用自己的域名可选"><a class="markdownIt-Anchor" href="#3使用自己的域名可选"></a> 3.使用自己的域名（可选）</h3>
