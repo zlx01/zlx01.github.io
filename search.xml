@@ -71,7 +71,7 @@
 <ul>
 <li>Xshell，ssh协议，非常好用，只是偶尔出现连接被远程主机拒绝的情况，在PowerShell中却正常，怪哉</li>
 <li>Xftp，文件传输，ftp协议</li>
-<li>WinSCP，文件传输，scp协议</li>
+<li>WinSCP，文件传输，scp命令</li>
 </ul>
 <h3 id="写博客"><a class="markdownIt-Anchor" href="#写博客"></a> 写博客</h3>
 <ul>
