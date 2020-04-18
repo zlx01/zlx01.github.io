@@ -1,6 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git学习笔记</title>
+    <url>/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="什么是git"><a class="markdownIt-Anchor" href="#什么是git"></a> 什么是Git</h2>
+<ul>
+<li>分布式版本控制工具</li>
+<li>源代码管理器SCM</li>
+<li>版本控制系统VCS</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>官网：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+<li>官方文档：<a href="https://git-scm.com/docs" target="_blank" rel="noopener">https://git-scm.com/docs</a></li>
+<li>Pro Git：<a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">https://git-scm.com/book/en/v2</a></li>
+<li>GitHub Cheat Sheet：<a href="https://github.github.com/training-kit/" target="_blank" rel="noopener">https://github.github.com/training-kit/</a></li>
+<li>Visual Git Cheat Sheet：<a href="https://ndpsoftware.com/git-cheatsheet.html%EF%BC%88%E9%9D%9E%E5%B8%B8%E6%B8%85%E6%99%B0%EF%BC%8C%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89" target="_blank" rel="noopener">https://ndpsoftware.com/git-cheatsheet.html（非常清晰，强烈推荐）</a></li>
+</ul>
+<h2 id="git工作原理"><a class="markdownIt-Anchor" href="#git工作原理"></a> Git工作原理</h2>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git1.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git2.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B1.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B2.png" class="">
+<ul>
+<li>
+<p>分区：工作区、暂存区、版本库</p>
+</li>
+<li>
+<p>文件分类：tracked，untracked，ignored</p>
+</li>
+<li>
+<p>会忽略的文件：.gitignore文件中指定的文件、空目录</p>
+</li>
+<li>
+<p>提交的表示：散列id，相对于HEAD</p>
+</li>
+<li>
+<p><mark>HEAD始终指向当前分支的最新提交</mark></p>
+</li>
+<li>
+<p>HEAD^  HEAD~ 均表示HEAD的第一个父提交</p>
+</li>
+<li>
+<p>HEAD^2表示 HEAD的第二个父提交</p>
+</li>
+<li>
+<p>HEAD~2表示HEAD的父提交的父提交</p>
+</li>
+</ul>
+<h2 id="什么是github和gitlab"><a class="markdownIt-Anchor" href="#什么是github和gitlab"></a> 什么是GitHub和GitLab</h2>
+<ul>
+<li>代码托管中心</li>
+<li>在GitHub上新建仓库</li>
+</ul>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%9C%A8GitHub%E4%B8%8A%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/github-project.png" class="">
+<ul>
+<li>在GitLab上新建项目</li>
+</ul>
+
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/gitlab-project.png" class="">
+<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
+<ul>
+<li>官网：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+</ul>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git-download.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86.png" class="">
+<ul>
+<li>检查是否安装成功</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<h2 id="git配置"><a class="markdownIt-Anchor" href="#git配置"></a> Git配置</h2>
+<h3 id="ssh连接至github"><a class="markdownIt-Anchor" href="#ssh连接至github"></a> SSH连接至GitHub</h3>
+<p>需要配置才能在本地和GitHub之间安全可信地传输数据</p>
+<blockquote>
+<p>Git Bash中输入ssh-keygen -t rsa -C “<a href="mailto:your_email@example.com">your_email@example.com</a>”，一路默认即可<br />
+打开用户目录下的.ssh文件夹中的id_rsa.pub，全部复制。注：id_rsa 文件是私钥， id_rsa.pub 是公钥。<br />
+进入Github的Account Settings，左边选择SSH and GPG Keys，New SSH Key，title随便填，粘贴上一步复制的公钥，确认。<br />
+Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
+</blockquote>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub1.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub2.png" class="">
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ssh-t.png" class="">
+<h3 id="签名"><a class="markdownIt-Anchor" href="#签名"></a> 签名</h3>
+<p>签名是设置提交时的作者信息，包括用户名和邮箱</p>
+<ul>
+<li>项目级签名</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config user.name <span class="string">"username"</span></span><br><span class="line">git config user.email <span class="string">"useremail"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>用户级签名（推荐）</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"username"</span></span><br><span class="line">git config --global user.email <span class="string">"useremail"</span></span><br></pre></td></tr></table></figure>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%A8%E6%88%B7%E7%BA%A7%E7%AD%BE%E5%90%8D.png" class="">
+<ul>
+<li>系统级签名</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --system user.name <span class="string">"username"</span></span><br><span class="line">git config --system user.email <span class="string">"useremail"</span></span><br></pre></td></tr></table></figure>
+<h3 id="设置colorui"><a class="markdownIt-Anchor" href="#设置colorui"></a> 设置<code>color.ui</code></h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global color.ui auto</span><br></pre></td></tr></table></figure>
+<h2 id="git命令"><a class="markdownIt-Anchor" href="#git命令"></a> Git命令</h2>
+<h3 id="查看帮助"><a class="markdownIt-Anchor" href="#查看帮助"></a> 查看帮助</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">help</span> subcommand  </span><br><span class="line">git --<span class="built_in">help</span> subcommand</span><br><span class="line">git subcommand --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建仓库"><a class="markdownIt-Anchor" href="#创建仓库"></a> 创建仓库</h3>
+<ol>
+<li>进入需要创建代码库的文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件路径</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在当前目录新建仓库，在当前目录下多出一个.git的隐藏文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<h3 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h3>
+<ul>
+<li>把文件从工作区添加到暂存区</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件名</span><br><span class="line">git add .</span><br><span class="line">git add *</span><br><span class="line">git add *.c</span><br></pre></td></tr></table></figure>
+<ul>
+<li>把文件从暂存区添加到版本库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit <span class="comment"># 提交暂存区所有文件</span></span><br><span class="line">git commit 文件名 <span class="comment"># 提交指定文件</span></span><br><span class="line"><span class="comment"># 填写commit message，保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以用-m选项填写较短的提交信息</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>把文件从工作区直接提交到版本库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a -m <span class="string">"commit message"</span></span><br><span class="line"><span class="comment"># 在新增或修改文件后，需要使用git add把文件加入暂存区，这样git commit时才能把已经修改的信息加入版本库</span></span><br><span class="line"><span class="comment"># -a选项可将所有被修改或者已删除的且已经被git管理的文档提交到仓库中</span></span><br><span class="line"><span class="comment"># -a不会造成新文件被提交</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改提交的comment</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看文件状态</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从工作区删除文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从暂存区删除文件，这个文件可能是新建后add的，也可能是版本库中文件修改后add的，执行下面的命令都会把文件变为untracked，置于工作区，并从删除索引</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached [file name]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从版本库中删除文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>恢复从版本库中删除的文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached [file name]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重命名tracked file</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git mv 原文件名 新文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将工作区的文件和暂存区的文件进行比较</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>工作区文件撤销修改（没有git add）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>暂存区文件撤销修改（没有git commit）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD [file name]	<span class="comment"># 将暂存区文件撤销到工作区</span></span><br><span class="line"><span class="comment"># git reset HEAD  # 取消多个已经缓存的文件</span></span><br><span class="line">git checkout [file name]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>撤回最近提交</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="历史版本"><a class="markdownIt-Anchor" href="#历史版本"></a> 历史版本</h3>
+<ul>
+<li>查看某个提交信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git show HEAD</span><br><span class="line">git show commitid</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看文件历史版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span>	<span class="comment"># 相当于 git log HEAD</span></span><br><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">git <span class="built_in">log</span> --pretty=oneline</span><br><span class="line">(git config format.pretty oneline)</span><br><span class="line">git <span class="built_in">log</span> master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>恢复历史版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard hashcode	<span class="comment"># 回退到hashcode表示的版本</span></span><br><span class="line">git reset --hard HEAD	<span class="comment"># 回退到当前最新提交，将暂存区文件撤销到工作区</span></span><br><span class="line">git reset --hard HEAD^   <span class="comment">#回退到上次（倒数第二次）提交，异或符号的个数表示回退几步</span></span><br><span class="line">git reset --hard HEAD~n  回退n步</span><br><span class="line">git reset --soft    仅在版本库移动HEAD指针，重置暂存区</span><br><span class="line">git reset --mixed   仅在本地库移动HEAD指针，重置暂存区和工作区</span><br></pre></td></tr></table></figure>
+<ul>
+<li>介绍<code>git reset</code>的<a href="https://www.jianshu.com/p/c2ec5f06cf1a" target="_blank" rel="noopener">深度好文</a></li>
+</ul>
+<h3 id="重返未来版本"><a class="markdownIt-Anchor" href="#重返未来版本"></a> 重返未来版本</h3>
+<ul>
+<li>查看历史提交以及被回退的提交（该记录有时限，且只在本地）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<ul>
+<li>回到未来版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard commitid</span><br></pre></td></tr></table></figure>
+<h3 id="分支"><a class="markdownIt-Anchor" href="#分支"></a> 分支</h3>
+<ul>
+<li>新建分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch branchname	<span class="comment"># 如果没有指定提交，就从HEAD开始分支</span></span><br><span class="line">git branch branchname [commitid]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换到其他分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout branchname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新建分支并切换过去</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b branchname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除已合并分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d branchname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除未合并分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -D branchname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除远程分支（建议界面操作）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push &lt;远程仓库名&gt; -d 分支名</span><br><span class="line">git push origin -d 分支名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列出本地分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列出远程分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -r</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列出本地分支和远程分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将指定分支合并到当前分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge branchname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>比较两个分支差异</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff source_branch target_branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果有冲突，编辑文件，保存退出</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add filename</span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看分支状态</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph</span><br><span class="line">git <span class="built_in">log</span> --graph --pretty=oneline --abbrey-commit</span><br></pre></td></tr></table></figure>
+<ul>
+<li>暂存工作现场</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>恢复工作现场</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git stash apply	<span class="comment"># 恢复</span></span><br><span class="line">git stash drop	<span class="comment"># 删除</span></span><br><span class="line">git stash pop	<span class="comment"># 恢复+删除</span></span><br></pre></td></tr></table></figure>
+<h3 id="远程库"><a class="markdownIt-Anchor" href="#远程库"></a> 远程库</h3>
+<ul>
+<li>添加远程库并为其指定别名</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add repositoryname url</span><br><span class="line">git remote add origin git@github.com:xxx/xxx.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>克隆远程库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> url </span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看远程库信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取远程库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git fetch [远程库地址别名] [远程分支名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换到远程库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout origin/master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>合并远程库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge [远程库地址别名/远程分支名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>拉取远程库，相当于先fetch再merge</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull [远程库地址别名] [远程分支名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>把仓库推送到远程库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br><span class="line">git push -u origin --all</span><br></pre></td></tr></table></figure>
+<ul>
+<li><mark>rebase</mark>，把多个分支提交合并造成的菱形提交图变为线性，开发中要push代码到远程仓库之前，通常需要pull代码，如果需要合并，一般选择rebase，参考<a href="https://segmentfault.com/a/1190000021004562" target="_blank" rel="noopener">链接1</a>，<a href="https://www.cnblogs.com/rxbook/p/9341606.html" target="_blank" rel="noopener">链接2</a></li>
+</ul>
+<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/rebase.png" class="">
+<h3 id="标签"><a class="markdownIt-Anchor" href="#标签"></a> 标签</h3>
+<ul>
+<li>tag与branch的操作基本一致，因为tag就是一个仅可读的branch</li>
+<li>给提交的版本添加标签</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag v1.0 hashcode	<span class="comment"># 省略hashcode表示当前版本</span></span><br><span class="line">git tag [-r] v1.0 hashcode	<span class="comment"># -r表示远程库</span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除本地标签</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag -d 标签名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除远程标签</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d 标签名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>推送到远端仓库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin 标签名</span><br><span class="line">git push origin --tags	<span class="comment"># 推送所有未提交的tag</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新到本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin --tags</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>GitHub</tag>
+        <tag>GitLab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>软件清单</title>
     <url>/2020/04/17/%E8%BD%AF%E4%BB%B6%E6%B8%85%E5%8D%95/</url>
     <content><![CDATA[<p>盘点一下<code>Windows 10 PC</code>中的软件，win10自带的就不写了~</p>
