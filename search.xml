@@ -146,7 +146,7 @@ srw-rw---- 1 root docker 0 juin  20 11:45 /var/run/docker.sock</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD  [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span><br><span class="line">ADD  [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;] # 支持路径带空格</span><br></pre></td></tr></table></figure>
 <p><code>ADD</code>能将复制本地文件至镜像内。</p>
 <p>相比<code>COPY</code>，<code>ADD</code>的功能更加丰富，支持从远程URL获取文件，并且会<strong>自动</strong>解压归档文件，一般优先选择简单 COPY。</p>
-<p>``参数支持通配符（*、?）。</p>
+<p>参数支持通配符（*、?）。</p>
 <h4 id="user指令"><a class="markdownIt-Anchor" href="#user指令"></a> <code>USER</code>指令</h4>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">USER &lt;user&gt;[:&lt;group&gt;]</span><br><span class="line">USER &lt;UID&gt;[:&lt;GID&gt;]</span><br></pre></td></tr></table></figure>
 <p>使用用户名或者 UID 指定之后的 RUN、CMD 和 ENTRYPOINT 指令执行使用的用户</p>
@@ -160,7 +160,6 @@ srw-rw---- 1 root docker 0 juin  20 11:45 /var/run/docker.sock</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ARG &lt;name&gt;[&#x3D;&lt;default value&gt;]</span><br></pre></td></tr></table></figure>
 <p>定义构建镜像时需要的参数。</p>
 <p>在多阶段构建中，可能会用在<code>FROM</code>指令前，从而可以被多个构建使用</p>
-<h2 id="多阶段构建"><a class="markdownIt-Anchor" href="#多阶段构建"></a> 多阶段构建</h2>
 ]]></content>
       <tags>
         <tag>Docker</tag>
