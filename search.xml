@@ -1,6 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker学习笔记</title>
+    <url>/2020/04/19/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>“Debug your app, not your environment”</p>
+<a id="more"></a>
+<h2 id="什么是docker"><a class="markdownIt-Anchor" href="#什么是docker"></a> 什么是Docker？</h2>
+<ul>
+<li>应用容器引擎</li>
+<li>官网：<a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com/</a></li>
+<li>官方文档：<a href="https://docs.docker.com/" target="_blank" rel="noopener">https://docs.docker.com/</a></li>
+<li>官方的公开镜像仓库：<a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></li>
+</ul>
+<h2 id="虚拟化技术"><a class="markdownIt-Anchor" href="#虚拟化技术"></a> 虚拟化技术</h2>
+<ul>
+<li>将计算机的各种硬件资源，例如CPU、内存、磁盘以及网络等，看做资源池，系统管理员可以对其进行重新分配，而不用考虑底层物理硬件</li>
+<li>虚拟化技术解决的问题：1.高性能计算机硬件的产能过剩；2.把老旧的计算机硬件重新组合，作为一个整体的资源来用，化零为整。</li>
+<li>Linux平台的虚拟化产品：KVM，Xen，VMWare，VirtualBox</li>
+<li>Windows平台的虚拟化产品：Hyper V，VMWare，VirtualBox</li>
+<li>虚拟化系统可以在宿主机上虚拟化出一套完整的硬件基础设施，配以操作系统，相当于虚拟出一台计算机</li>
+<li>虚拟机对底层系统来说，就是一个文件。</li>
+<li>虚拟机之间是相互隔离的。</li>
+<li>虚拟化技术的缺点：资源占用多，一个虚拟机实例需要完整的操作系统及其附属应用，实际可能只需要部分功能和应用；冗余步骤多，启动慢</li>
+</ul>
+<h2 id="容器技术"><a class="markdownIt-Anchor" href="#容器技术"></a> 容器技术</h2>
+<ul>
+<li>容器，是一种轻量级的操作系统级的虚拟化，可以让用户在一个资源隔离的进程中运行应用及其依赖项。运行应用程序所必须的组件都讲打包成一个镜像并可以复用。</li>
+</ul>
+<h2 id="docker与虚拟机的比较"><a class="markdownIt-Anchor" href="#docker与虚拟机的比较"></a> docker与虚拟机的比较</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191204135544248.png" alt="在这里插入图片描述" /><br />
+<img src="https://img-blog.csdnimg.cn/20191204135716448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0xlZV8wMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<h2 id="为什么需要docker"><a class="markdownIt-Anchor" href="#为什么需要docker"></a> 为什么需要docker？</h2>
+<ul>
+<li>解决的问题：开发环境和生产环境的一致性（依赖，版本，配置，网络。。。）</li>
+<li>跨平台容易，方便部署，扩展，迁移。</li>
+<li>一次构建、随处运行（Build once，Run everywhere）</li>
+<li>举例：一般通过LAMP搭建网站时，往往需要很多配置环境的操作，当迁移系统到其他云平台时，需要重新部署和调试，而有了容器技术来打包应用，迁移系统就变得在新的云平台上启动容器那么简单了</li>
+</ul>
+<h2 id="docker在devops开发运维中的优势"><a class="markdownIt-Anchor" href="#docker在devops开发运维中的优势"></a> docker在DevOps（开发/运维）中的优势？</h2>
+<ul>
+<li>敏捷：更快速的交付和部署</li>
+<li>提高生产力：容器可以看做一个微服务，容器之间相互独立，可以独立升级，避免跨服务的依赖和冲突</li>
+<li>节省资源：不需要额外的虚拟化管理程序支持</li>
+<li>安全：容器之间的进程是相互隔离的（使用沙箱技术）</li>
+</ul>
+<h2 id="docker架构"><a class="markdownIt-Anchor" href="#docker架构"></a> docker架构</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/docker%E6%9E%B6%E6%9E%84.png" alt="docker架构" /></p>
+<h2 id="相关概念"><a class="markdownIt-Anchor" href="#相关概念"></a> 相关概念</h2>
+<ul>
+<li>镜像(Image)：软件打包好的镜像</li>
+<li>容器(Container)：镜像启动后的实例称为一个容器；容器是独立运行的一个或一组应用</li>
+<li>仓库(Registry)：用来保存各种打包好的软件镜像</li>
+<li>一个容器就是一个独立的虚拟操作系统，互不影响，而镜像就是这个操作系统的安装包</li>
+<li>镜像本身是可读的，启动镜像时，Docker会在镜像的最上一层创建一个可写层</li>
+</ul>
+<h2 id="镜像的命名规则"><a class="markdownIt-Anchor" href="#镜像的命名规则"></a> 镜像的命名规则</h2>
+<ul>
+<li>镜像名包括命名空间和仓库名</li>
+<li>标签用于区分不同版本的镜像</li>
+</ul>
+<h2 id="容器的状态"><a class="markdownIt-Anchor" href="#容器的状态"></a> 容器的状态</h2>
+<p>已创建（created）、重启中（restarting）、运行中（running）、已暂停（paused）和已退出（exited）</p>
+<h2 id="下载和安装"><a class="markdownIt-Anchor" href="#下载和安装"></a> 下载和安装</h2>
+<h3 id="在-windows-下安装-docker-ce"><a class="markdownIt-Anchor" href="#在-windows-下安装-docker-ce"></a> 在 Windows 下安装 Docker CE</h3>
+<p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">https://hub.docker.com/editions/community/docker-ce-desktop-windows</a></p>
+<h3 id="在-macos-下安装-docker-ce"><a class="markdownIt-Anchor" href="#在-macos-下安装-docker-ce"></a> 在 macOS 下安装 Docker CE</h3>
+<h3 id="在-linux-下安装-docker-ce"><a class="markdownIt-Anchor" href="#在-linux-下安装-docker-ce"></a> 在 Linux 下安装 Docker CE</h3>
+<ul>
+<li>直接安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install docker.io</span><br></pre></td></tr></table></figure>
+<ul>
+<li>或者指定软件源安装，参见<a href="https://yq.aliyun.com/articles/110806" target="_blank" rel="noopener">链接</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># step 1: 安装必要的一些系统工具</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt -y install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"><span class="comment"># step 2: 安装GPG证书</span></span><br><span class="line">curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment"># Step 3: 写入软件源信息</span></span><br><span class="line">sudo add-apt-repository <span class="string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br><span class="line"><span class="comment"># Step 4: 更新并安装 Docker-CE</span></span><br><span class="line">sudo apt -y update</span><br><span class="line">sudo apt -y install docker-ce</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置国内镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加配置文件</span></span><br><span class="line">sudo vim /etc/docker/daemon.json</span><br><span class="line"><span class="comment"># 添加以下内容</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>:[<span class="string">"https://y0qd3iq.mirror.aliyuncs.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 重启docker服务使配置生效</span></span><br><span class="line">sudo service docker restart</span><br><span class="line"><span class="comment"># 查看配置是否生效</span></span><br><span class="line">docker info|grep Mirrors -A 1</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"> Registry Mirrors:</span><br><span class="line">  https://y0qd3iq.mirror.aliyuncs.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>, <span class="string">"http://hub-mirror.c.163.com"</span>, <span class="string">"https://pee6w651.mirror.aliyuncs.com"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="启动docker"><a class="markdownIt-Anchor" href="#启动docker"></a> 启动docker</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+<h4 id="将docker服务设为开机启动"><a class="markdownIt-Anchor" href="#将docker服务设为开机启动"></a> 将Docker服务设为开机启动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
+<h4 id="停止docker"><a class="markdownIt-Anchor" href="#停止docker"></a> 停止docker</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+<h4 id="免root执行"><a class="markdownIt-Anchor" href="#免root执行"></a> 免root执行</h4>
+<ul>
+<li>问题</li>
+</ul>
+<blockquote>
+<p>直接执行docker命令会遇到权限问题， 原因是/var/run/docker.sock文件，除root用户，只有docker组用户才可读写</p>
+<p>#ls -l /var/run/docker.sock<br />
+srw-rw---- 1 root docker 0 juin  20 11:45 /var/run/docker.sock</p>
+</blockquote>
+<ul>
+<li>解决方法</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -a 用户名 docker</span><br><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
+<h4 id="查看docker服务状态"><a class="markdownIt-Anchor" href="#查看docker服务状态"></a> 查看docker服务状态</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl status docker</span><br></pre></td></tr></table></figure>
+<h2 id="docker命令"><a class="markdownIt-Anchor" href="#docker命令"></a> Docker命令</h2>
+<h3 id="查看docker版本"><a class="markdownIt-Anchor" href="#查看docker版本"></a> 查看docker版本</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker -v</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
+<h3 id="帮助命令"><a class="markdownIt-Anchor" href="#帮助命令"></a> 帮助命令</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker info</span><br><span class="line">docker --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+<h3 id="镜像命令"><a class="markdownIt-Anchor" href="#镜像命令"></a> 镜像命令</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看本地已有的镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment"># 查找镜像，没有指定TAG时，默认为latest标签</span></span><br><span class="line"><span class="comment"># 如果获取到的镜像比之前拉取的新，原先的镜像tag会变成none</span></span><br><span class="line">docker search NAME:[TAG] </span><br><span class="line">docker pull NAME:[TAG]</span><br><span class="line">docker search mysql</span><br><span class="line">docker pull mysql	<span class="comment"># 拉取mysql镜像</span></span><br><span class="line">docker pull mysql:tag	<span class="comment"># 拉取指定tag的mysql镜像</span></span><br><span class="line">docker rmi mysql:tag <span class="comment"># 通过镜像标签删除镜像</span></span><br><span class="line">docker rmi image_id	<span class="comment"># 通过镜像ID删除镜像</span></span><br><span class="line"></span><br><span class="line">docker inspect 镜像名  <span class="comment"># 查看镜像详细信息</span></span><br><span class="line"></span><br><span class="line">docker commit提交容器副本使之成为一个新的镜像</span><br><span class="line">docker commit -m=“提交的描述信息” -a=“作者” 容器ID 要创建的目标镜像名:[标签名] -p=<span class="literal">true</span> 提交时暂停容器运行</span><br><span class="line"></span><br><span class="line">docker save -o xxx.tar  容器:标签或容器id	<span class="comment"># 保存容器</span></span><br><span class="line">docker load &lt; xxx.tar 	<span class="comment"># 载入容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改镜像名和标签</span></span><br><span class="line">docker tag NAME[:tag] NEW_NAME[:tag]</span><br><span class="line">docker tag 镜像id NEW_NAME[:tag]</span><br></pre></td></tr></table></figure>
+<h3 id="容器命令"><a class="markdownIt-Anchor" href="#容器命令"></a> 容器命令</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create -it container-name	<span class="comment"># 创建但不启动容器</span></span><br><span class="line">docker run 【--name container-name -d】 image-name	<span class="comment"># container-name为自定义的容器名，-d表示后台运行，image-name为要运行的镜像模板</span></span><br><span class="line"><span class="comment"># -i 打开容器的标准输入</span></span><br><span class="line"><span class="comment"># -t 为容器分配一个命令行虚拟终端</span></span><br><span class="line"><span class="comment"># -d 后台</span></span><br><span class="line">docker ps	<span class="comment"># 查看正在运行的容器</span></span><br><span class="line">docker ps -a <span class="comment"># 查看所有容器，包括运行和停止</span></span><br><span class="line">docker start container-name/container-id	<span class="comment"># 启动一个已停止的容器</span></span><br><span class="line">docker stop container-name/container-id	<span class="comment"># 停止正在运行的容器</span></span><br><span class="line">docker restart container-name/container-id	<span class="comment"># 重启指定容器</span></span><br><span class="line">docker <span class="built_in">kill</span> container-name/container-id	<span class="comment"># 强制停止指定容器</span></span><br><span class="line">docker rm container-id	<span class="comment"># 删除指定容器，必须先停止才能删除</span></span><br><span class="line"></span><br><span class="line">docker run -d -p 8088:8080 tomcat	<span class="comment"># 把虚拟机的8088端口映射到容器的8080端口，这样在虚拟机浏览器访问localhost:8088就能看到Tomcat首页</span></span><br><span class="line">docker logs container-name/container-id	<span class="comment"># 查看容器日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line">	*   -t 是加入时间戳</span><br><span class="line">	*   -f 跟随最新的日志打印</span><br><span class="line">	*   --tail 数字 显示最后多少条</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker top 容器ID	<span class="comment"># 查看容器内运行的进程</span></span><br><span class="line">docker inspect 容器ID	<span class="comment"># 查看容器内部细节</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>	<span class="comment"># 容器停止退出</span></span><br><span class="line">ctrl+P+Q	<span class="comment"># 容器不停止退出</span></span><br><span class="line"></span><br><span class="line">docker rename 容器ID 新的容器名	<span class="comment"># 容器重命名</span></span><br></pre></td></tr></table></figure>
+<h2 id="dockerfile"><a class="markdownIt-Anchor" href="#dockerfile"></a> Dockerfile</h2>
+<blockquote>
+<p>Dockerfile 是一个描述如何创建 Docker 镜像所需步骤的文本文件。由一系列指令组成。</p>
+</blockquote>
+<h4 id="from指令"><a class="markdownIt-Anchor" href="#from指令"></a> <code>FROM</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FROM &lt;image&gt;            [AS &lt;name&gt;]</span><br><span class="line">FROM &lt;image&gt;[:&lt;tag&gt;]    [AS &lt;name&gt;]</span><br><span class="line">FROM &lt;image&gt;[@&lt;digest&gt;] [AS &lt;name&gt;]</span><br><span class="line">FROM openjdk:11-jre</span><br></pre></td></tr></table></figure>
+<p><code>FROM</code>指令用于指定基础镜像，一般都会作为 Dockfile 中的第一条指令。 <code>AS</code>参数可以对构建设置一个别名，这种用法会使用在 <em>多阶段构建</em> 中（下述）。</p>
+<h4 id="env-指令"><a class="markdownIt-Anchor" href="#env-指令"></a> <code>ENV</code> 指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ENV &lt;key&gt; &lt;value&gt;</span><br><span class="line">ENV &lt;key&gt;&#x3D;&lt;value&gt; ...</span><br><span class="line">ENV LANG C.UTF-8</span><br><span class="line">ENV TZ&#x3D;&quot;Asia&#x2F;Shanghai&quot;</span><br><span class="line">ENV SPRING_PROFILES_ACTIVE&#x3D;&quot;production&quot; SPRING_HTTP_PORT&#x3D;&quot;8080&quot;</span><br></pre></td></tr></table></figure>
+<p><code>ENV</code>指令用于设置环境变量，可用空格分隔设置多个环境变量，也可以使用多个<code>ENV</code>指令</p>
+<h4 id="expose指令"><a class="markdownIt-Anchor" href="#expose指令"></a> <code>EXPOSE</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EXPOSE &lt;port&gt;[&#x2F;&lt;protocol&gt;] ...</span><br><span class="line">EXPOSE 8080</span><br><span class="line">EXPOSE 6379&#x2F;tcp 53&#x2F;udp</span><br></pre></td></tr></table></figure>
+<p><code>EXPOSE</code>指令用于声明默认开放的端口， protocol 可为 tcp 或 udp，默认使用 tcp。 这些端口被使用在<code>docker run</code>的<code>-P</code>选项。</p>
+<h4 id="entrypoint指令"><a class="markdownIt-Anchor" href="#entrypoint指令"></a> <code>ENTRYPOINT</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ENTRYPOINT [&quot;&lt;executable&gt;&quot;, &quot;&lt;param1&gt;&quot;, &quot;&lt;param2&gt;&quot;] # 使用 exec 执行，推荐</span><br><span class="line">ENTRYPOINT command param1 param2                    # 使用 &#x2F;bin&#x2F;sh -c 执行</span><br><span class="line">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;&#x2F;application.jar&quot;]</span><br></pre></td></tr></table></figure>
+<p><code>ENTRYPOINT</code>指令用于指定镜像创建后执行的命令，<strong>无法在其中引用环境变量</strong>。 使用<code>docker run</code>命令创建容器时，<code>ENTRYPOINT</code>不能被覆盖，只能设置额外参数。 存在多条<code>ENTRYPOINT</code>指令时，只有最后一条指令会生效。</p>
+<h4 id="cmd指令"><a class="markdownIt-Anchor" href="#cmd指令"></a> <code>CMD</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]                # 使用 exec 执行，推荐</span><br><span class="line">CMD command param1 param2                           # 使用 &#x2F;bin&#x2F;sh -c 执行</span><br><span class="line">CMD [&quot;.&#x2F;run.sh&quot;]</span><br></pre></td></tr></table></figure>
+<p><code>CMD</code>指令用于指定镜像创建后执行的命令，<strong>无法在其中引用环境变量</strong>。 使用<code>docker run</code>命令创建容器时，<code>CMD</code>可以被覆盖。 如果同时存在 <code>ENTRYPOINT</code> 指令，则<code>CMD</code>指令表示<code>ENTRYPOINT</code>的 <em>默认参数</em>。 存在多条<code>CMD</code>指令时，只有最后一条指令会生效。</p>
+<h4 id="run指令"><a class="markdownIt-Anchor" href="#run指令"></a> RUN`指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RUN &lt;command&gt;                          # 使用 &#x2F;bin&#x2F;sh -c 执行</span><br><span class="line">RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;] # 使用 exec 执行</span><br><span class="line">RUN apt-get update \</span><br><span class="line"> &amp;&amp; apt-get install -y --no-install-recommends \</span><br><span class="line">    bzip2    \</span><br><span class="line">    unzip    \</span><br><span class="line">    xz-utils \</span><br><span class="line"> &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*</span><br></pre></td></tr></table></figure>
+<p><code>RUN</code>指令用于执行命令。</p>
+<p>由于每一个 Dockerfile 指令都会生成一个新的层，所以最好使用<code>&amp;&amp;</code>将多个<code>RUN</code>指令合并成一个，<em>注意这里行尾的转义符<code>\</code></em>。</p>
+<h4 id="copy指令"><a class="markdownIt-Anchor" href="#copy指令"></a> <code>COPY</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">COPY [--from&#x3D;&lt;name|index&gt;] [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span><br><span class="line">COPY [--from&#x3D;&lt;name|index&gt;] [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;] # 支持路径带空格</span><br><span class="line">COPY &#x2F;target&#x2F;application.jar &#x2F;application.jar  # 复制 &#x2F;target&#x2F;application.jar 至根路径下</span><br><span class="line">COPY hom* &#x2F;mydir&#x2F;                              # 复制所有以 hom 开头的有文件至 &#x2F;mydir 文件夹下</span><br></pre></td></tr></table></figure>
+<p><code>COPY</code>指令能将复制本地文件至镜像内。</p>
+<p>``参数支持通配符（*、?）。</p>
+<p><code>COPY</code>指令的<code>--from</code>参数用于在多阶段构建中，从前置构建或其他镜像复制文件。</p>
+<h4 id="add指令"><a class="markdownIt-Anchor" href="#add指令"></a> <code>ADD</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD  [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span><br><span class="line">ADD  [--chown&#x3D;&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;] # 支持路径带空格</span><br></pre></td></tr></table></figure>
+<p><code>ADD</code>能将复制本地文件至镜像内。</p>
+<p>相比<code>COPY</code>，<code>ADD</code>的功能更加丰富，支持从远程URL获取文件，并且会<strong>自动</strong>解压归档文件，一般优先选择简单 COPY。</p>
+<p>``参数支持通配符（*、?）。</p>
+<h4 id="user指令"><a class="markdownIt-Anchor" href="#user指令"></a> <code>USER</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">USER &lt;user&gt;[:&lt;group&gt;]</span><br><span class="line">USER &lt;UID&gt;[:&lt;GID&gt;]</span><br></pre></td></tr></table></figure>
+<p>使用用户名或者 UID 指定之后的 RUN、CMD 和 ENTRYPOINT 指令执行使用的用户</p>
+<h4 id="volume指令"><a class="markdownIt-Anchor" href="#volume指令"></a> <code>VOLUME</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">VOLUME &lt;path&gt; ...</span><br><span class="line">VOLUME &#x2F;data</span><br></pre></td></tr></table></figure>
+<p>指定为数据卷的文件或目录。 如果该文件或目录已经在镜像中存在，那么当容器启动时，它就会被复制至这个卷。 如果提供了多个参数，那么就会被解释成多个数据卷。 出于对可移植性和安全性的考虑，你不能在 Dockerfile 中指定数据卷将会使用的主机目录。</p>
+<h4 id="workdir指令"><a class="markdownIt-Anchor" href="#workdir指令"></a> <code>WORKDIR</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WORKDIR &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<p>对任何后续的<code>RUN</code>、<code>ENTRYPOINT</code>、<code>CMD</code>、<code>COPY</code>或<code>ADD</code>指令设置工作目录。 这个指令可多次使用。 支持使用相对路径，按上次定义的<code>WORKDIR</code>解析。</p>
+<h4 id="arg指令"><a class="markdownIt-Anchor" href="#arg指令"></a> <code>ARG</code>指令</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ARG &lt;name&gt;[&#x3D;&lt;default value&gt;]</span><br></pre></td></tr></table></figure>
+<p>定义构建镜像时需要的参数。</p>
+<p>在多阶段构建中，可能会用在<code>FROM</code>指令前，从而可以被多个构建使用</p>
+<h2 id="多阶段构建"><a class="markdownIt-Anchor" href="#多阶段构建"></a> 多阶段构建</h2>
+]]></content>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git学习笔记</title>
     <url>/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="什么是git"><a class="markdownIt-Anchor" href="#什么是git"></a> 什么是Git</h2>
@@ -15,13 +181,14 @@
 <li>官方文档：<a href="https://git-scm.com/docs" target="_blank" rel="noopener">https://git-scm.com/docs</a></li>
 <li>Pro Git：<a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">https://git-scm.com/book/en/v2</a></li>
 <li>GitHub Cheat Sheet：<a href="https://github.github.com/training-kit/" target="_blank" rel="noopener">https://github.github.com/training-kit/</a></li>
-<li>Visual Git Cheat Sheet：<a href="https://ndpsoftware.com/git-cheatsheet.html%EF%BC%88%E9%9D%9E%E5%B8%B8%E6%B8%85%E6%99%B0%EF%BC%8C%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89" target="_blank" rel="noopener">https://ndpsoftware.com/git-cheatsheet.html（非常清晰，强烈推荐）</a></li>
+<li>Visual Git Cheat Sheet：<a href="https://ndpsoftware.com/git-cheatsheet.html" target="_blank" rel="noopener">https://ndpsoftware.com/git-cheatsheet.html</a> （非常清晰，强烈推荐）</li>
 </ul>
 <h2 id="git工作原理"><a class="markdownIt-Anchor" href="#git工作原理"></a> Git工作原理</h2>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git1.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git2.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B1.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B2.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git1.png" alt="git1.png" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git2.png" alt="git2" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git3.png" alt="git3" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B1.png" alt="git工作流程1" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B2.png" alt="git工作流程2" /></p>
 <ul>
 <li>
 <p>分区：工作区、暂存区、版本库</p>
@@ -53,19 +220,19 @@
 <li>代码托管中心</li>
 <li>在GitHub上新建仓库</li>
 </ul>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%9C%A8GitHub%E4%B8%8A%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/github-project.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E5%9C%A8GitHub%E4%B8%8A%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt="在GitHub上新建仓库" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/github-project.png" alt="github-project" /></p>
 <ul>
 <li>在GitLab上新建项目</li>
 </ul>
-
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/gitlab-project.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E5%9C%A8GitLab%E4%B8%8A%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.png" alt="在GitLab上新建项目" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/gitlab-project.png" alt="gitlab-project" /></p>
 <h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
 <ul>
 <li>官网：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
 </ul>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/git-download.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/git-download.png" alt="git-download" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86.png" alt="换行符的处理" /></p>
 <ul>
 <li>检查是否安装成功</li>
 </ul>
@@ -79,9 +246,9 @@
 进入Github的Account Settings，左边选择SSH and GPG Keys，New SSH Key，title随便填，粘贴上一步复制的公钥，确认。<br />
 Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 </blockquote>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub1.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub2.png" class="">
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ssh-t.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub1.png" alt="SSH连接至GitHub1" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/SSH%E8%BF%9E%E6%8E%A5%E8%87%B3GitHub2.png" alt="SSH连接至GitHub2" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/ssh-t.png" alt="ssh-t" /></p>
 <h3 id="签名"><a class="markdownIt-Anchor" href="#签名"></a> 签名</h3>
 <p>签名是设置提交时的作者信息，包括用户名和邮箱</p>
 <ul>
@@ -92,7 +259,7 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <li><strong>用户级签名（推荐）</strong></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"username"</span></span><br><span class="line">git config --global user.email <span class="string">"useremail"</span></span><br></pre></td></tr></table></figure>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%A8%E6%88%B7%E7%BA%A7%E7%AD%BE%E5%90%8D.png" class="">
+
 <ul>
 <li>系统级签名</li>
 </ul>
@@ -115,11 +282,11 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <ul>
 <li>把文件从工作区添加到暂存区</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件名</span><br><span class="line">git add .</span><br><span class="line">git add *</span><br><span class="line">git add *.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件名</span><br><span class="line">git add .	<span class="comment"># 添加所有文件</span></span><br><span class="line">git add *	<span class="comment"># 星号为通配符</span></span><br><span class="line">git add *.c</span><br></pre></td></tr></table></figure>
 <ul>
 <li>把文件从暂存区添加到版本库</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit <span class="comment"># 提交暂存区所有文件</span></span><br><span class="line">git commit 文件名 <span class="comment"># 提交指定文件</span></span><br><span class="line"><span class="comment"># 填写commit message，保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以用-m选项填写较短的提交信息</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit 文件名 <span class="comment"># 提交指定文件</span></span><br><span class="line">git commit <span class="comment"># 提交暂存区所有文件</span></span><br><span class="line"><span class="comment"># 填写commit message，保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用-m选项填写较短的提交信息，不推荐，因为有时候公司有commit message规范</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>把文件从工作区直接提交到版本库</li>
 </ul>
@@ -129,33 +296,34 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 <ul>
-<li>查看文件状态</li>
+<li>查看工作区文件状态</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
 <ul>
-<li>从工作区删除文件</li>
+<li>将工作区的文件和暂存区的文件进行比较</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除新增加还未add的文件，直接rm，因为此时文件是untracked的</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm 文件名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>从暂存区删除文件，这个文件可能是新建后add的，也可能是版本库中文件修改后add的，执行下面的命令都会把文件变为untracked，置于工作区，并从删除索引</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached [file name]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached [file name]</span><br><span class="line"><span class="comment"># 删除后要commit</span></span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
 <ul>
 <li>从版本库中删除文件</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm 文件名</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm 文件名</span><br><span class="line"><span class="comment"># 删除后要commit</span></span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
 <ul>
-<li>恢复从版本库中删除的文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached [file name]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重命名tracked file</li>
+<li>
+<p>恢复从版本库中删除的文件</p>
+</li>
+<li>
+<p>重命名tracked file</p>
+</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git mv 原文件名 新文件名</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将工作区的文件和暂存区的文件进行比较</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 文件名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>工作区文件撤销修改（没有git add）</li>
 </ul>
@@ -163,11 +331,7 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <ul>
 <li>暂存区文件撤销修改（没有git commit）</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD [file name]	<span class="comment"># 将暂存区文件撤销到工作区</span></span><br><span class="line"><span class="comment"># git reset HEAD  # 取消多个已经缓存的文件</span></span><br><span class="line">git checkout [file name]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>撤回最近提交</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD [file name]	<span class="comment"># 将暂存区文件撤销到工作区</span></span><br><span class="line"><span class="comment"># git reset HEAD  # 取消多个已经缓存的文件</span></span><br><span class="line">git checkout [file name]	<span class="comment"># 撤销修改</span></span><br></pre></td></tr></table></figure>
 <h3 id="历史版本"><a class="markdownIt-Anchor" href="#历史版本"></a> 历史版本</h3>
 <ul>
 <li>查看某个提交信息</li>
@@ -180,10 +344,20 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <ul>
 <li>恢复历史版本</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard hashcode	<span class="comment"># 回退到hashcode表示的版本</span></span><br><span class="line">git reset --hard HEAD	<span class="comment"># 回退到当前最新提交，将暂存区文件撤销到工作区</span></span><br><span class="line">git reset --hard HEAD^   <span class="comment">#回退到上次（倒数第二次）提交，异或符号的个数表示回退几步</span></span><br><span class="line">git reset --hard HEAD~n  回退n步</span><br><span class="line">git reset --soft    仅在版本库移动HEAD指针，重置暂存区</span><br><span class="line">git reset --mixed   仅在本地库移动HEAD指针，重置暂存区和工作区</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard commitid	<span class="comment"># 回退到某次提交</span></span><br><span class="line">git reset --hard HEAD	<span class="comment"># 回退到当前最新提交，将暂存区文件撤销到工作区</span></span><br><span class="line">git reset --hard HEAD^   <span class="comment"># 回退到第一个父提交</span></span><br><span class="line">git reset --hard HEAD~n  <span class="comment"># 回退到第n个父提交</span></span><br><span class="line">git reset --soft   <span class="comment"># 仅在版本库移动HEAD指针，重置暂存区</span></span><br><span class="line">git reset --mixed  <span class="comment"># 仅在本地库移动HEAD指针，重置暂存区和工作区</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>介绍<code>git reset</code>的<a href="https://www.jianshu.com/p/c2ec5f06cf1a" target="_blank" rel="noopener">深度好文</a></li>
+<li>
+<p>介绍<code>git reset</code>的<a href="https://www.jianshu.com/p/c2ec5f06cf1a" target="_blank" rel="noopener">深度好文</a></p>
+</li>
+<li>
+<p>本地回退之后，远程库也要同步更新</p>
+</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push -f</span><br></pre></td></tr></table></figure>
+<ul>
+<li>撤销某次提交，参考<a href="https://blog.csdn.net/yxlshk/article/details/79944535" target="_blank" rel="noopener">链接</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git revert 某次提交</span><br></pre></td></tr></table></figure>
 <h3 id="重返未来版本"><a class="markdownIt-Anchor" href="#重返未来版本"></a> 重返未来版本</h3>
 <ul>
 <li>查看历史提交以及被回退的提交（该记录有时限，且只在本地）</li>
@@ -203,7 +377,7 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout branchname</span><br></pre></td></tr></table></figure>
 <ul>
-<li>新建分支并切换过去</li>
+<li>新建分支并切过去</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b branchname</span><br></pre></td></tr></table></figure>
 <ul>
@@ -290,7 +464,7 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <ul>
 <li><mark>rebase</mark>，把多个分支提交合并造成的菱形提交图变为线性，开发中要push代码到远程仓库之前，通常需要pull代码，如果需要合并，一般选择rebase，参考<a href="https://segmentfault.com/a/1190000021004562" target="_blank" rel="noopener">链接1</a>，<a href="https://www.cnblogs.com/rxbook/p/9341606.html" target="_blank" rel="noopener">链接2</a></li>
 </ul>
-<img src="/2020/04/18/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/rebase.png" class="">
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/rebase.png" alt="rebase" /></p>
 <h3 id="标签"><a class="markdownIt-Anchor" href="#标签"></a> 标签</h3>
 <ul>
 <li>tag与branch的操作基本一致，因为tag就是一个仅可读的branch</li>
@@ -313,6 +487,12 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <li>更新到本地</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin --tags</span><br></pre></td></tr></table></figure>
+<h2 id="多人协作模式"><a class="markdownIt-Anchor" href="#多人协作模式"></a> 多人协作模式</h2>
+<ul>
+<li>Git Flow</li>
+<li>GitHub Flow</li>
+<li>GitLab Flow</li>
+</ul>
 ]]></content>
       <tags>
         <tag>git</tag>
@@ -370,7 +550,7 @@ Git bash上输入ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
 <ul>
 <li>WSL，启用window自带的Linux子系统后，可以在应用商店下载Linux的各个发行版本，例如Ubuntu</li>
 <li>VMWare Workstation，虚拟机</li>
-<li>Oracal VM Virtual Box，虚拟机</li>
+<li>Oracle VM Virtual Box，虚拟机</li>
 </ul>
 <h3 id="android开发"><a class="markdownIt-Anchor" href="#android开发"></a> Android开发</h3>
 <ul>
