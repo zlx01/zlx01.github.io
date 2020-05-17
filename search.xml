@@ -3,7 +3,7 @@
   <entry>
     <title>Maven学习笔记</title>
     <url>/2020/05/17/Maven%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>约定由于配置，Convention Over Configuration</p>
+    <content><![CDATA[<p>约定优于配置，Convention Over Configuration</p>
 <a id="more"></a>
 <h2 id="什么是maven"><a class="markdownIt-Anchor" href="#什么是maven"></a> 什么是Maven</h2>
 <ul>
