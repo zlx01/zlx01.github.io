@@ -1,6 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Intellij IDEA常用快捷键</title>
+    <url>/2020/05/18/IDEA%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<p>天下武功，唯快不破！</p>
+<a id="more"></a>
+<p>TAB 快速补全</p>
+<p>ALT+ENTER 提示<br />
+ALT+INSERT 生成Getter、Setter等方法<br />
+ALT+F7 find usage<br />
+ALT+7 查看源码</p>
+<p>SHIFT+F6 重构、重命名<br />
+SHIFT+F9 调试<br />
+SHIFT+F10 运行<br />
+SHIFT+ENTER 另起一行</p>
+<p>CTRL+/ 行注释<br />
+CTRL+SHIFT+/ 块注释</p>
+<p>CTRL+A 全选<br />
+CTRL+B 跳转到类、方法定义（同CTRL+CLICK）<br />
+CTRL+C 复制行<br />
+CTRL+D 复制并粘贴行<br />
+CTRL+E 打开最近文件<br />
+CTRL+F 查找<br />
+CTRL+SHIFT+F 在当前项目中查找<br />
+CTRL+G 跳转到某一行<br />
+CTRL+H 查看某一类的继承体系<br />
+CTRL+I 实现方法<br />
+CTRL+J 插入模板代码<br />
+CTRL+K commit<br />
+CTRL+SHIFT+K push<br />
+CTRL+L 搜索下一项（同F3）<br />
+CTRL+SHIFT+L 搜索上一项（同SHIFT+F3）<br />
+CTRL+M 滚动到文档中间位置<br />
+CTRL+N 查找类<br />
+CTRL+SHIFT+N 查找文件<br />
+CTRL+O 重载方法<br />
+CTRL+P 查看方法参数<br />
+CTRL+Q 类、方法文档<br />
+CTRL+R 查找并替换<br />
+CTRL+S 保存所有（一般都会自动保存）<br />
+CTRL+T pull<br />
+CTRL+SHIFT+T 测试类<br />
+CTRL+U 跳转到父类<br />
+CTRL+SHIFT+U 变大小写<br />
+CTRL+V 粘贴行<br />
+CTRL+SHIFT+V 选择复制历史粘贴<br />
+CTRL+W 选择代码<br />
+CTRL+SHIFT+W 选择代码<br />
+CTRL+X 剪切行<br />
+CTRL+Y 删除行<br />
+CTRL+Z 撤销<br />
+CTRL+SHIFT+Z 重做</p>
+<p>CTRL+F2 停止运行<br />
+CTRL+F4 关闭标签页（同SHIFT+CLICK）<br />
+CTRL+F5 rerun<br />
+CTRL+F6 改变方法签名<br />
+CTRL+F7 find usage<br />
+CTRL+F8 打断点<br />
+CTRL+F9 build project<br />
+CTRL+F10 update running application<br />
+CTRL+F12 查看类结构</p>
+<p>CTRL+ALT+L 格式化代码<br />
+CTRL+ALT+S 打开设置<br />
+CTRL+ALT+V 抽取变量<br />
+CTRL+ALT+M 抽取方法<br />
+CTRL+ALT+T 快速包裹代码</p>
+<p>快速定位文件：点击任意文件，输入文件名</p>
+]]></content>
+      <categories>
+        <category>IDE</category>
+      </categories>
+      <tags>
+        <tag>IDE</tag>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Intellij IDEA使用设置</title>
+    <url>/2020/05/18/IDEA%E4%BD%BF%E7%94%A8%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p><strong>IDEA是宇宙最强IDE</strong></p>
+<a id="more"></a>
+<h2 id="appearance-behavior"><a class="markdownIt-Anchor" href="#appearance-behavior"></a> Appearance &amp; Behavior</h2>
+<h3 id="设置主题字体大小"><a class="markdownIt-Anchor" href="#设置主题字体大小"></a> 设置主题字体大小</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211609805.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="关闭自动更新"><a class="markdownIt-Anchor" href="#关闭自动更新"></a> 关闭自动更新</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200128234846525.png" alt="在这里插入图片描述" /></p>
+<h2 id="editor"><a class="markdownIt-Anchor" href="#editor"></a> Editor</h2>
+<h3 id="关闭ctrl鼠标滚轮调整字体"><a class="markdownIt-Anchor" href="#关闭ctrl鼠标滚轮调整字体"></a> 关闭ctrl+鼠标滚轮调整字体</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211527562.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="自动导包"><a class="markdownIt-Anchor" href="#自动导包"></a> 自动导包</h3>
+<ul>
+<li>add unambiguous import on the fly 去除当前项目多余的导包</li>
+<li>optimize imports on the fly 优化当前项目的导包</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211651322.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="显示方法间的分割线"><a class="markdownIt-Anchor" href="#显示方法间的分割线"></a> 显示方法间的分割线</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2019112521163589.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="显示css样式颜色"><a class="markdownIt-Anchor" href="#显示css样式颜色"></a> 显示CSS样式颜色</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2020012823494841.png" alt="在这里插入图片描述" /></p>
+<h3 id="多行tab"><a class="markdownIt-Anchor" href="#多行tab"></a> 多行tab</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211515758.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="设置编辑器字体大小"><a class="markdownIt-Anchor" href="#设置编辑器字体大小"></a> 设置编辑器字体大小</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211553554.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="解决注释在首列的问题-java"><a class="markdownIt-Anchor" href="#解决注释在首列的问题-java"></a> 解决注释在首列的问题-Java</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125212018585.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="解决注释在首列的问题-html"><a class="markdownIt-Anchor" href="#解决注释在首列的问题-html"></a> 解决注释在首列的问题-HTML</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125212012360.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="解决html标签缩进问题"><a class="markdownIt-Anchor" href="#解决html标签缩进问题"></a> 解决HTML标签缩进问题</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211950259.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="代码添加作者信息"><a class="markdownIt-Anchor" href="#代码添加作者信息"></a> 代码添加作者信息</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200128235002355.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211603216.jpg" alt="在这里插入图片描述" /></p>
+<h3 id="设置utf-8编码"><a class="markdownIt-Anchor" href="#设置utf-8编码"></a> 设置UTF-8编码</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211538732.jpg" alt="在这里插入图片描述" /></p>
+<h2 id="plugins"><a class="markdownIt-Anchor" href="#plugins"></a> Plugins</h2>
+<ul>
+<li>FindBugs</li>
+<li>free-idea-mybatis</li>
+<li>GenerateSerialVersionUID</li>
+<li>GsonFormat</li>
+<li>idea-gitignore</li>
+<li>idea-jprofiler</li>
+<li>IntelliJ-Key-Promoter-X</li>
+<li>lombok</li>
+<li>MavenRunHelper</li>
+<li>MyBatis</li>
+<li>mybatis-log</li>
+<li>p3c</li>
+<li>props2yaml</li>
+<li>SonarLint</li>
+<li>yaml2props</li>
+<li>backgroundImagePlus</li>
+<li>GoogleTranslation</li>
+<li>GrepConsole</li>
+<li>intellij-rainbow-brackets</li>
+<li>power-mode</li>
+<li>stackoverflow</li>
+</ul>
+<h2 id="version-control"><a class="markdownIt-Anchor" href="#version-control"></a> Version Control</h2>
+<h3 id="关联-gitexe并测试连接"><a class="markdownIt-Anchor" href="#关联-gitexe并测试连接"></a> 关联 git.exe，并测试连接</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200128235015381.png" alt="在这里插入图片描述" /></p>
+<h3 id="关联-github-上的账户并测试连接"><a class="markdownIt-Anchor" href="#关联-github-上的账户并测试连接"></a> 关联 GitHub 上的账户，并测试连接</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200128235022547.png" alt="在这里插入图片描述" /></p>
+<h2 id="buildexecutiondeployment"><a class="markdownIt-Anchor" href="#buildexecutiondeployment"></a> Build,Execution,Deployment</h2>
+<h3 id="设置自动编译"><a class="markdownIt-Anchor" href="#设置自动编译"></a> 设置自动编译</h3>
+<ol>
+<li>自动编译</li>
+</ol>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211627575.jpg" alt="在这里插入图片描述" /></p>
+<ol start="2">
+<li>Double Shift<br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191219003145666.png" alt="在这里插入图片描述" /></li>
+<li>勾选 compiler.automake.allow when.app.running<br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191219003215377.png" alt="在这里插入图片描述" /></li>
+</ol>
+<h3 id="配置maven"><a class="markdownIt-Anchor" href="#配置maven"></a> 配置Maven</h3>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200313002703571.jpg" alt="在这里插入图片描述" /><br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20200313002713184.jpg" alt="在这里插入图片描述" /></p>
+<h2 id="连接tomcat"><a class="markdownIt-Anchor" href="#连接tomcat"></a> 连接tomcat</h2>
+<ol>
+<li>下载Tomcat</li>
+</ol>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211706755.png" alt="在这里插入图片描述" /></p>
+<ol start="2">
+<li>配置Tomcat环境变量</li>
+</ol>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211723954.jpg" alt="在这里插入图片描述" /></p>
+<ol start="3">
+<li>配置tomcat</li>
+</ol>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211741689.png" alt="在这里插入图片描述" /><br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211751209.jpg" alt="在这里插入图片描述" /><br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211759642.jpg" alt="在这里插入图片描述" /><br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211819340.jpg" alt="在这里插入图片描述" /></p>
+<h2 id="连接数据库"><a class="markdownIt-Anchor" href="#连接数据库"></a> 连接数据库</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211810722.jpg" alt="在这里插入图片描述" /><br />
+<img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125211831264.jpg" alt="在这里插入图片描述" /></p>
+<h2 id="导入java源码"><a class="markdownIt-Anchor" href="#导入java源码"></a> 导入Java源码</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191125212033946.jpg" alt="在这里插入图片描述" /></p>
+<h2 id="设置背景图片"><a class="markdownIt-Anchor" href="#设置背景图片"></a> 设置背景图片</h2>
+<ul>
+<li>参考<a href="https://blog.csdn.net/qq827245563/article/details/87165291" target="_blank" rel="noopener">博客</a></li>
+</ul>
+<h2 id="插件问题"><a class="markdownIt-Anchor" href="#插件问题"></a> 插件问题</h2>
+<ul>
+<li>Intellij IDEA 的Plugins 搜索不了插件，setting-&gt;Plugins加载很慢出不来的解决方法，参考<a href="https://blog.csdn.net/chenchunlin526/article/details/85339082" target="_blank" rel="noopener">博客</a></li>
+</ul>
+<h2 id="隐藏多余idea-iml"><a class="markdownIt-Anchor" href="#隐藏多余idea-iml"></a> 隐藏多余.idea *.iml</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191220171654595.png" alt="在这里插入图片描述" /></p>
+]]></content>
+      <categories>
+        <category>IDE</category>
+      </categories>
+      <tags>
+        <tag>IDE</tag>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven学习笔记</title>
     <url>/2020/05/17/Maven%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>约定优于配置，Convention Over Configuration</p>
@@ -293,10 +490,10 @@
 <p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200518003857675.png" alt="image-20200518003857675" /></p>
 ]]></content>
       <categories>
-        <category>Maven</category>
+        <category>maven</category>
       </categories>
       <tags>
-        <tag>Maven</tag>
+        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
@@ -460,8 +657,11 @@ srw-rw---- 1 root docker 0 juin  20 11:45 /var/run/docker.sock</p>
 <p>定义构建镜像时需要的参数。</p>
 <p>在多阶段构建中，可能会用在<code>FROM</code>指令前，从而可以被多个构建使用</p>
 ]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
-        <tag>Docker</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1022,6 +1222,9 @@ If you are sure you want to delete it, run ‘git branch -D dev’.</p>
 <h3 id="gitkeep"><a class="markdownIt-Anchor" href="#gitkeep"></a> .gitkeep</h3>
 <p>一个占位文件，存放于要让git追踪空文件夹，参考<a href="https://www.jianshu.com/p/2507dfdb35d8" target="_blank" rel="noopener">博客</a></p>
 ]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
       <tags>
         <tag>git</tag>
         <tag>GitHub</tag>
@@ -1131,6 +1334,9 @@ If you are sure you want to delete it, run ‘git branch -D dev’.</p>
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>software</category>
+      </categories>
       <tags>
         <tag>software</tag>
       </tags>
