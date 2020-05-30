@@ -1,6 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Nginx学习笔记</title>
+    <url>/2020/05/30/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>a powerful server</p>
+<a id="more"></a>
+<h2 id="什么是nginx"><a class="markdownIt-Anchor" href="#什么是nginx"></a> 什么是Nginx</h2>
+<ul>
+<li>engine x</li>
+<li>高性能HTTP和反向代理服务器</li>
+</ul>
+<h2 id="nginx的优势"><a class="markdownIt-Anchor" href="#nginx的优势"></a> Nginx的优势</h2>
+<ul>
+<li>占用内存少，并发能力强</li>
+<li>成本低廉、配置简单、运行稳定</li>
+</ul>
+<h2 id="安装与使用服务器ubuntu环境"><a class="markdownIt-Anchor" href="#安装与使用服务器ubuntu环境"></a> 安装与使用（服务器ubuntu环境）</h2>
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service nginx start</span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service nginx stop</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看版本号</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -v</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不重启重新载入最新配置文件内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service nginx reload</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看防火墙是否开启，inactive表示未开启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果运行着防火墙，还需要打开80和443端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw allow <span class="string">'Nginx Full'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Nginx Full ：此配置文件打开端口80（正常，未加密的网络流量）和端口443（TLS / SSL加密流量）</p>
+<p>Nginx HTTP ：此配置文件仅打开端口80（正常，未加密的网络流量）</p>
+<p>Nginx HTTPS ：此配置文件仅打开端口443（TLS / SSL加密流量）</p>
+</blockquote>
+<ul>
+<li>浏览器访问云服务器ip</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205213755.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>systemctl</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl start nginx</span><br><span class="line">sudo systemctl stop nginx</span><br><span class="line">sudo systemctl restart nginx</span><br><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
+<h2 id="正向代理"><a class="markdownIt-Anchor" href="#正向代理"></a> 正向代理</h2>
+<ul>
+<li>局域网中的客户端要访问局域网外的Internet，则需要通过代理服务器</li>
+<li>客户端需要配置代理服务器</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205235771.png" alt="在这里插入图片描述" /></p>
+<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
+<ul>
+<li>对客户端来说，访问代理服务器就是访问真实服务器</li>
+<li>客户端不需要配置代理服务器</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205255988.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205310173.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.png" alt="正向代理和反向代理" /></p>
+<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
+<ul>
+<li>配置多台服务器</li>
+<li>客户端访问反向代理服务器，由反向代理服务器选择由哪个真实服务器进行服务</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.png" alt="负载均衡" /></p>
+<h2 id="动静分离"><a class="markdownIt-Anchor" href="#动静分离"></a> 动静分离</h2>
+<blockquote>
+<p>Java 中的资源可以分为动态和静态，动态需要经过 Tomcat 解析之后，才能返回给浏览器，例如 JSP 页面、Freemarker 页面、控制器返回的 JSON 数据等，都算作动态资源，动态资源经过了 Tomcat 处理，速度必然降低。对于静态资源，例如图片、HTML、JS、CSS 等资源，这种资源可以不必经过 Tomcat 解析，当客户端请求这些资源时，之间将资源返回给客户端就行了。此时，可以使用 Nginx 搭建静态资源服务器，将静态资源直接返回给客户端。</p>
+</blockquote>
+<h2 id="高可用性"><a class="markdownIt-Anchor" href="#高可用性"></a> 高可用性</h2>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7.png" alt="高可用性" /></p>
+<h2 id="nginx的配置文件"><a class="markdownIt-Anchor" href="#nginx的配置文件"></a> Nginx的配置文件</h2>
+<h4 id="在etcnginx目录下"><a class="markdownIt-Anchor" href="#在etcnginx目录下"></a> 在/etc/nginx/目录下</h4>
+<ul>
+<li><code>conf.d</code>：用户自己定义的conf配置文件目录</li>
+<li><code>sites-available</code>：系统默认设置的配置文件目录</li>
+<li><code>sites-enabled</code>：由<code>sites-available</code>中的配置文件转换生成的文件目录</li>
+<li><code>nginx.conf</code>：汇总以上三个配置文件的内容，同时配置我们所需要的参数</li>
+</ul>
+<h4 id="etcnginxnginxconf"><a class="markdownIt-Anchor" href="#etcnginxnginxconf"></a> /etc/nginx/nginx.conf</h4>
+<ul>
+<li>三大组成
+<ul>
+<li>全局块</li>
+<li>events块</li>
+<li>http块</li>
+</ul>
+</li>
+<li>http块中引入了其他配置文件，在部署需要的web服务时，我们可以拷贝<code>sites-enabled</code>中的<code>default</code>文件到conf.d并且修改名字为<code>**.conf</code>,然后进行配置</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205354280.png" alt="在这里插入图片描述" /></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@VM-0-11-ubuntu:~$ <span class="built_in">cd</span> /etc/nginx/sites-enabled</span><br><span class="line">ubuntu@VM-0-11-ubuntu:/etc/nginx/sites-enabled$ sudo cp default /etc/nginx/conf.d/my-config.conf</span><br><span class="line">ubuntu@VM-0-11-ubuntu:/etc/nginx/sites-enabled$ sudo vim /etc/nginx/conf.d/my-config.conf</span><br></pre></td></tr></table></figure>
+<h2 id="代码实例"><a class="markdownIt-Anchor" href="#代码实例"></a> 代码实例</h2>
+<h3 id="反向代理一"><a class="markdownIt-Anchor" href="#反向代理一"></a> 反向代理一</h3>
+<ul>
+<li>
+<p>目标：通过访问服务器ip就能直接访问到tomcat</p>
+</li>
+<li>
+<p>安装两个tomcat</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.27/bin/apache-tomcat-9.0.27.tar.gz</span><br><span class="line"></span><br><span class="line">tar zxvf apache-tomcat-9.0.27.tar.gz</span><br><span class="line">mkdir tomcat1</span><br><span class="line">mv apache-tomcat-9.0.27 tomcat1/</span><br><span class="line">tar zxvf apache-tomcat-9.0.27.tar.gz</span><br><span class="line">mkdir tomcat2</span><br><span class="line">mv apache-tomcat-9.0.27 tomcat2/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改tomcat端口，xxx/apache-tomcat-9.0.27/conf/server.xml</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205419786.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>这种修改对于8080端口冲突是可以解决的，但是如果想同时使用两个tomcat，那么这样的修改还不完整，因为还有其它的端口会冲突，还需要继续改</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205433349.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2019112220544495.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>修改tomcat2的端口</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2019112220545799.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205512781.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205535210.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>启动两个tomcat</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">~/tomcat1/apache-tomcat-9.0.27/bin/startup.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>主机浏览器访问服务器ip:8078，出现tomcat首页</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205621501.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>配置nginx反向代理，server_name为服务器ip</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/nginx/sites-enabled/default /etc/nginx/conf.d/tomcat1.conf</span><br><span class="line">sudo vim /etc/nginx/conf.d/tomcat1.conf</span><br><span class="line">sudo service nginx reload</span><br></pre></td></tr></table></figure>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205637606.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>主机浏览器访问服务器ip:8078，再次出现tomcat首页</li>
+<li>在webapps新建test目录，test目录下新建index.html</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Tomcat1<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>访问服务器ip/test/index.html，Hello World! 出来了</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205649231.png" alt="在这里插入图片描述" /></p>
+<h3 id="反向代理二"><a class="markdownIt-Anchor" href="#反向代理二"></a> 反向代理二</h3>
+<ul>
+<li>
+<p>手动安装tomcat太麻烦，用docker安装tomcat</p>
+</li>
+<li>
+<p>在docker中运行tomcat服务器，服务器主机的8078和8079端口均映射到对应容器的8080端口</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker run --name tomcat1 -d -p 8078:8080 tomcat</span><br><span class="line">sudo docker run --name tomcat2 -d -p 8079:8080 tomcat</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在云服务器中配置安全组规则，开放TCP协议下的8078和8079端口</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205703223.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>主机浏览器访问服务器ip:8078 ip:8079，出现tomcat首页</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2019112220571451.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>配置nginx反向代理，server_name为服务器ip</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/nginx/sites-enabled/default /etc/nginx/conf.d/tomcat1.conf</span><br><span class="line">sudo vim /etc/nginx/conf.d/tomcat1.conf</span><br><span class="line">sudo service nginx reload</span><br></pre></td></tr></table></figure>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205727667.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>主机浏览器访问服务器ip:8078，再次出现tomcat首页</li>
+</ul>
+<h3 id="反向代理三"><a class="markdownIt-Anchor" href="#反向代理三"></a> 反向代理三</h3>
+<ul>
+<li>Nginx也可以用docker容器安装，参考https://www.cnblogs.com/lichmama/p/11366262.html</li>
+</ul>
+<h3 id="负载均衡-2"><a class="markdownIt-Anchor" href="#负载均衡-2"></a> 负载均衡</h3>
+<ul>
+<li>修改/etc/nginx/nginx.conf，添加upstream</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/2019112220573788.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>修改/etc/nginx/conf.d/tomcat1.conf</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205751890.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>浏览器访问服务器ip/test/index.html，可以看到同样的链接，访问到了不同的资源。如果一直是同个页面，多刷新几次就出现不同了。</li>
+</ul>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205804417.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/20191122205812529.png" alt="在这里插入图片描述" /></p>
+<ul>
+<li>
+<p>均衡策略</p>
+<ul>
+<li>轮询（默认），按时间顺序分配，如果后端服务器挂了，自动剔除</li>
+<li>加权轮询，权重越高，被轮询的几率越高，提供服务的机会越多，解决机器配置不均衡的问题</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">upstream server_pool&#123;</span><br><span class="line">    server 192.168.5.21 weight=10;</span><br><span class="line">    server 192.168.5.22 weight=10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ip_hash（源地址哈希），根据ip的hash分配，可以解决session共享问题</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">upstream server_pool&#123;</span><br><span class="line">    ip_hash;</span><br><span class="line">    server 192.168.5.21:80;</span><br><span class="line">    server 192.168.5.22:80;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fair，第三方，按照后端的响应时间来分配，响应时间短的优先分配</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">upstream server_pool&#123;</span><br><span class="line">    server 192.168.5.21:80;</span><br><span class="line">    server 192.168.5.22:80;</span><br><span class="line">    fair;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>随机</li>
+<li>least_conn（最小连接数）</li>
+</ul>
+</li>
+</ul>
+<h3 id="动静分离-2"><a class="markdownIt-Anchor" href="#动静分离-2"></a> 动静分离</h3>
+<ul>
+<li>动态请求和静态请求分离，tomcat负责动态请求，Nginx负责静态请求</li>
+<li>实现：一种是纯粹把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案；<br />
+另外一种方法就是动态跟静态文件混合在一起发布，通过 nginx 来分开。</li>
+</ul>
+<h3 id="高可用性-2"><a class="markdownIt-Anchor" href="#高可用性-2"></a> 高可用性</h3>
+<ul>
+<li>主备nginx服务器</li>
+<li>需要安装keepalived</li>
+<li>对外提供虚拟ip</li>
+<li>keepalived将虚拟ip绑定到主备nginx服务器</li>
+</ul>
+<h3 id="限流"><a class="markdownIt-Anchor" href="#限流"></a> 限流</h3>
+<ul>
+<li>漏桶算法</li>
+</ul>
+<h3 id="黑白名单"><a class="markdownIt-Anchor" href="#黑白名单"></a> 黑白名单</h3>
+<ul>
+<li>不限流白名单</li>
+<li>限流黑名单</li>
+</ul>
+<h3 id="缓存"><a class="markdownIt-Anchor" href="#缓存"></a> 缓存</h3>
+<ul>
+<li>静态资源缓存<br />
+nn（最小连接数）</li>
+</ul>
+<h3 id="动静分离-3"><a class="markdownIt-Anchor" href="#动静分离-3"></a> 动静分离</h3>
+<ul>
+<li>动态请求和静态请求分离，tomcat负责动态请求，Nginx负责静态请求</li>
+<li>实现：一种是纯粹把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案；<br />
+另外一种方法就是动态跟静态文件混合在一起发布，通过 nginx 来分开。</li>
+</ul>
+<h3 id="高可用性-3"><a class="markdownIt-Anchor" href="#高可用性-3"></a> 高可用性</h3>
+<ul>
+<li>主备nginx服务器</li>
+<li>需要安装keepalived</li>
+<li>对外提供虚拟ip</li>
+<li>keepalived将虚拟ip绑定到主备nginx服务器</li>
+</ul>
+<h3 id="限流-2"><a class="markdownIt-Anchor" href="#限流-2"></a> 限流</h3>
+<ul>
+<li>漏桶算法</li>
+</ul>
+<h3 id="黑白名单-2"><a class="markdownIt-Anchor" href="#黑白名单-2"></a> 黑白名单</h3>
+<ul>
+<li>不限流白名单</li>
+<li>限流黑名单</li>
+</ul>
+<h3 id="缓存-2"><a class="markdownIt-Anchor" href="#缓存-2"></a> 缓存</h3>
+<ul>
+<li>静态资源缓存</li>
+<li>代理层缓存</li>
+</ul>
+<p>注：部分图片来自微信公众号——江南一点雨</p>
+]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle学习笔记（一）</title>
     <url>/2020/05/23/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<p>举一隅不以三隅反，则不复也。</p>
@@ -107,7 +392,9 @@
   <entry>
     <title>Database</title>
     <url>/2020/05/23/Database/</url>
-    <content><![CDATA[<h2 id="什么是数据库"><a class="markdownIt-Anchor" href="#什么是数据库"></a> 什么是数据库</h2>
+    <content><![CDATA[<p>数据之美</p>
+<a id="more"></a>
+<h2 id="什么是数据库"><a class="markdownIt-Anchor" href="#什么是数据库"></a> 什么是数据库</h2>
 <ul>
 <li>DB，Database，数据库，存储数据的仓库</li>
 <li>DBMS，Database Management System，数据库管理系统（MySQL，Oracle，SQL Server…)</li>
