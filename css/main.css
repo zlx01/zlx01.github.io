@@ -1270,7 +1270,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e27c2f;
+  background: #32ffc2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1464,7 +1464,7 @@ pre .javascript .function {
   font-size: 0.8125em;
 }
 .footer {
-  color: #999;
+  color: #000;
   font-size: 0.875em;
   padding: 20px 0;
 }
@@ -1475,6 +1475,7 @@ pre .javascript .function {
   right: 0;
 }
 .footer-inner {
+  color: #000;
   box-sizing: border-box;
   margin: 0 auto;
   text-align: center;
@@ -1491,12 +1492,13 @@ pre .javascript .function {
   }
 }
 .with-love {
-  color: #808080;
+  color: #000;
   display: inline-block;
   margin: 0 5px;
 }
 .powered-by,
 .theme-info {
+  color: #000;
   display: inline-block;
 }
 @-moz-keyframes iconAnimate {
