@@ -88,14 +88,14 @@
 <h2 id="高可用性"><a class="markdownIt-Anchor" href="#高可用性"></a> 高可用性</h2>
 <p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7.png" alt="高可用性" /></p>
 <h2 id="nginx的配置文件"><a class="markdownIt-Anchor" href="#nginx的配置文件"></a> Nginx的配置文件</h2>
-<h4 id="在etcnginx目录下"><a class="markdownIt-Anchor" href="#在etcnginx目录下"></a> 在/etc/nginx/目录下</h4>
+<h3 id="在etcnginx目录下"><a class="markdownIt-Anchor" href="#在etcnginx目录下"></a> 在/etc/nginx/目录下</h3>
 <ul>
 <li><code>conf.d</code>：用户自己定义的conf配置文件目录</li>
 <li><code>sites-available</code>：系统默认设置的配置文件目录</li>
 <li><code>sites-enabled</code>：由<code>sites-available</code>中的配置文件转换生成的文件目录</li>
 <li><code>nginx.conf</code>：汇总以上三个配置文件的内容，同时配置我们所需要的参数</li>
 </ul>
-<h4 id="etcnginxnginxconf"><a class="markdownIt-Anchor" href="#etcnginxnginxconf"></a> /etc/nginx/nginx.conf</h4>
+<h3 id="etcnginxnginxconf"><a class="markdownIt-Anchor" href="#etcnginxnginxconf"></a> /etc/nginx/nginx.conf</h3>
 <ul>
 <li>三大组成
 <ul>
