@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>IDEA插件</title>
+    <url>/2020/06/26/IDEA%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>如果人体的各个器官也是插件。。。</p>
+<a id="more"></a>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200626015919664.png" alt="image-20200626015919664" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200626020610742.png" alt="image-20200626020610742" /></p>
+<p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200626021157630.png" alt="image-20200626021157630" /></p>
+]]></content>
+      <categories>
+        <category>IDE</category>
+      </categories>
+      <tags>
+        <tag>IDE</tag>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx学习笔记</title>
     <url>/2020/05/30/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>a powerful server</p>
@@ -322,6 +339,15 @@ nn（最小连接数）</li>
 <p>解决方案：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">请输入用户名：sys as sysdba</span><br><span class="line">请输入口令：xxx</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">请输入用户名：sys as sysdba</span><br><span class="line">请输入口令：xxx</span><br></pre></td></tr></table></figure>
+<h2 id="序列"><a class="markdownIt-Anchor" href="#序列"></a> 序列</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> INR_REQUIRMENT_SQUENCE</span><br><span class="line">    <span class="keyword">INCREMENT</span> <span class="keyword">BY</span> <span class="number">1</span> <span class="comment">-- 每次加几个</span></span><br><span class="line">    <span class="keyword">START</span> <span class="keyword">WITH</span> <span class="number">1</span> <span class="comment">-- 从1开始计数</span></span><br><span class="line">    <span class="keyword">NOMAXVALUE</span> <span class="comment">-- 不设置最大值</span></span><br><span class="line">    <span class="keyword">NOCYCLE</span> <span class="comment">-- 一直累加，不循环</span></span><br><span class="line">    <span class="keyword">CACHE</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> INR_REQUIRMENT_SQUENCE.nextval <span class="keyword">from</span> dual;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> INR_REQUIRMENT_SQUENCE.currval <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h2 id="find_in_set"><a class="markdownIt-Anchor" href="#find_in_set"></a> find_in_set</h2>
+<ul>
+<li>find_in_set是mysql中的函数，参考<a href="https://blog.csdn.net/zhangkaidsy/article/details/101053481" target="_blank" rel="noopener">博客</a></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">function</span> find_in_set(arg1 <span class="keyword">in</span> <span class="built_in">varchar2</span>,arg2 <span class="keyword">in</span> <span class="built_in">varchar</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">number</span> <span class="keyword">is</span> <span class="keyword">Result</span> <span class="built_in">number</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">instr</span>(<span class="string">','</span>||arg2||<span class="string">','</span> , <span class="string">','</span>||arg1||<span class="string">','</span>) <span class="keyword">into</span> <span class="keyword">Result</span> <span class="keyword">from</span> dual;</span><br><span class="line">return(Result);</span><br><span class="line"><span class="keyword">end</span> find_in_set;</span><br></pre></td></tr></table></figure>
+<h2 id="uuid"><a class="markdownIt-Anchor" href="#uuid"></a> uuid</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> sys_guid() <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
 <h2 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h2>
 <ul>
 <li>varchar是定长字符串，varchar2是不定长字符串</li>
@@ -890,7 +916,7 @@ CTRL+ALT+T 快速包裹代码</p>
 <h2 id="什么是maven"><a class="markdownIt-Anchor" href="#什么是maven"></a> 什么是Maven</h2>
 <ul>
 <li>官网：<a href="https://maven.apache.org/" target="_blank" rel="noopener">https://maven.apache.org/</a></li>
-<li>一个构建工具</li>
+<li>一个自动化构建工具</li>
 <li>一个依赖管理工具</li>
 <li>一个项目信息管理工具</li>
 </ul>
@@ -903,10 +929,16 @@ CTRL+ALT+T 快速包裹代码</p>
 <li>Make</li>
 <li>Ant，Another Neat Tool</li>
 </ul>
+<h3 id="好处"><a class="markdownIt-Anchor" href="#好处"></a> 好处？</h3>
+<ul>
+<li>添加第三方jar包：原来手动添加，需要把jar包复制到WEB-INF/lib目录下，文件重复；使用maven后，每个jar包只需在仓库保存一份，需要jar包的工程以坐标的方式引用即可，节约存储空间</li>
+<li>jar包之间的依赖关系：一个jar包可能依赖另一个jar包，需要把依赖的jar包也一起导入才能使用；使用maven可以自动将当前jar包所依赖的其他jar包全部导入进来</li>
+<li>方便将项目分成多个工程模块</li>
+</ul>
 <h2 id="安装maven"><a class="markdownIt-Anchor" href="#安装maven"></a> 安装Maven</h2>
 <ul>
 <li>以<strong>Windows</strong>为例</li>
-<li>必须先安装JDK</li>
+<li>必须先安装JDK，<code>echo %JAVA_HOME%</code></li>
 <li>下载地址：<a href="https://maven.apache.org/download.cgi%EF%BC%8C%E9%80%89%E6%8B%A9.zip" target="_blank" rel="noopener">https://maven.apache.org/download.cgi，选择.zip</a></li>
 </ul>
 <p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200517162042979.png" alt="image-20200517162042979" /></p>
@@ -975,7 +1007,7 @@ CTRL+ALT+T 快速包裹代码</p>
 </ul>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- mirror</span></span><br><span class="line"><span class="comment">   | Specifies a repository mirror site to use instead of a given repository. The repository that</span></span><br><span class="line"><span class="comment">   | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used</span></span><br><span class="line"><span class="comment">   | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.</span></span><br><span class="line"><span class="comment">   |</span></span><br><span class="line"><span class="comment">  &lt;mirror&gt;</span></span><br><span class="line"><span class="comment">    &lt;id&gt;mirrorId&lt;/id&gt;</span></span><br><span class="line"><span class="comment">    &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;</span></span><br><span class="line"><span class="comment">    &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;</span></span><br><span class="line"><span class="comment">    &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;</span></span><br><span class="line"><span class="comment">  &lt;/mirror&gt;</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>修改本地仓库路径，默认放在<code>C:\Users\Lee\.m2\repository</code>，占用C盘容量。打开<code>D:\program\apache-maven-3.6.2\conf\settings.xml</code>，添加<code>localRepository</code></li>
+<li>修改本地仓库路径，默认放在<code>~\.m2\repository</code>，占用C盘容量。打开<code>D:\program\apache-maven-3.6.2\conf\settings.xml</code>，添加<code>localRepository</code></li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- localRepository</span></span><br><span class="line"><span class="comment">   | The path to the local repository maven will use to store artifacts.</span></span><br><span class="line"><span class="comment">   |</span></span><br><span class="line"><span class="comment">   | Default: $&#123;user.home&#125;/.m2/repository</span></span><br><span class="line"><span class="comment">  &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\program\apache-maven-3.6.2\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="idea集成maven"><a class="markdownIt-Anchor" href="#idea集成maven"></a> IDEA集成Maven</h2>
@@ -996,6 +1028,9 @@ CTRL+ALT+T 快速包裹代码</p>
 </li>
 <li>
 <p>GAV（groupId，artificatId，version）Maven中<strong>jar、war、pom</strong>的<mark>坐标、唯一标识</mark></p>
+</li>
+<li>
+<p>groupId:artifactId:version</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lee<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -1173,6 +1208,10 @@ CTRL+ALT+T 快速包裹代码</p>
 <p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200518003817853.png" alt="image-20200518003817853" /></p>
 <h3 id="创建web项目"><a class="markdownIt-Anchor" href="#创建web项目"></a> 创建Web项目</h3>
 <p><img src="https://lee-1300539932.cos.ap-guangzhou.myqcloud.com/md/image-20200518003857675.png" alt="image-20200518003857675" /></p>
+<h2 id="mvnw"><a class="markdownIt-Anchor" href="#mvnw"></a> mvnw</h2>
+<ul>
+<li>Maven Wrapper就是给一个项目提供一个独立的，指定版本的Maven给它使用</li>
+</ul>
 ]]></content>
       <categories>
         <category>maven</category>
