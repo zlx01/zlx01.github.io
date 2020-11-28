@@ -4,9 +4,12 @@
     <title>搭建个人博客</title>
     <url>/2020/03/18/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<ul>
-<li>技术：Hexo+Nodejs+npm+git+GitHub Page</li>
+<li>双股剑：Hexo+GitHub Page</li>
 </ul>
 <a id="more"></a>
+<ul>
+<li>需要先安装好npm和git</li>
+</ul>
 <h2 id="hexo"><a class="markdownIt-Anchor" href="#hexo"></a> Hexo</h2>
 <h3 id="1安装hexo"><a class="markdownIt-Anchor" href="#1安装hexo"></a> 1.安装Hexo</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
@@ -16,14 +19,9 @@
 <h3 id="3运行"><a class="markdownIt-Anchor" href="#3运行"></a> 3.运行</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <h3 id="4访问"><a class="markdownIt-Anchor" href="#4访问"></a> 4.访问</h3>
-<ul>
-<li><code>http://localhost:4000</code></li>
-</ul>
-<h3 id="5站点配置文件"><a class="markdownIt-Anchor" href="#5站点配置文件"></a> 5.站点配置文件</h3>
-<p><code>站点目录/_config.yml</code></p>
-<ul>
-<li>修改站点信息</li>
-</ul>
+<p><code>http://localhost:4000</code></p>
+<h3 id="5修改站点信息"><a class="markdownIt-Anchor" href="#5修改站点信息"></a> 5.修改站点信息</h3>
+<p>站点配置文件：<code>站点目录/_config.yml</code></p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Lee</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">'个人博客'</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">'import power from knowledge'</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">Java,Spring</span> <span class="string">Boot</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Lee</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">'Asia/Shanghai'</span></span><br></pre></td></tr></table></figure>
 <h3 id="hexo命令"><a class="markdownIt-Anchor" href="#hexo命令"></a> Hexo命令</h3>
 <table>
@@ -59,12 +57,26 @@
 </table>
 <p>一般用<code>hexo clean &amp; hexo g &amp; hexo s</code></p>
 <h2 id="next"><a class="markdownIt-Anchor" href="#next"></a> NexT</h2>
-<p>VIP说明文档：<a href="https://theme-next.org/docs/" target="_blank" rel="noopener">https://theme-next.org/docs/</a></p>
+<ul>
+<li>
+<p>博客主题默认<code>landscape</code>，下面演示如何改为<code>NexT</code>主题</p>
+</li>
+<li>
+<p>使用文档：<a href="https://theme-next.org/docs/" target="_blank" rel="noopener">https://theme-next.org/docs/</a></p>
+</li>
+<li>
 <p><a href="[https://theme-next.org](https://theme-next.org/)">NexT官网</a></p>
+</li>
+<li>
 <p><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NextT仓库</a></p>
+</li>
+<li>
 <p><a href="https://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT旧官网？</a></p>
+</li>
+<li>
 <p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT旧仓库?</a></p>
-<p>默认<code>landscape</code>，下面演示如何改为<code>NexT</code>主题</p>
+</li>
+</ul>
 <h3 id="1安装next"><a class="markdownIt-Anchor" href="#1安装next"></a> 1.安装NexT</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> 站点目录</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <h3 id="2修改站点配置文件"><a class="markdownIt-Anchor" href="#2修改站点配置文件"></a> 2.修改<mark>站点配置文件</mark></h3>
@@ -72,7 +84,7 @@
 <h3 id="3重新运行"><a class="markdownIt-Anchor" href="#3重新运行"></a> 3.重新运行</h3>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <h2 id="next主题设置"><a class="markdownIt-Anchor" href="#next主题设置"></a> NexT主题设置</h2>
-<p>主题配置文件<code>站点目录/themes/next/_config.yml</code></p>
+<p>主题配置文件：<code>站点目录/themes/next/_config.yml</code></p>
 <h3 id="选择scheme"><a class="markdownIt-Anchor" href="#选择scheme"></a> 选择Scheme</h3>
 <ul>
 <li>同个主题不同外观</li>
@@ -81,14 +93,10 @@
 </ul>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
 <h3 id="设置菜单"><a class="markdownIt-Anchor" href="#设置菜单"></a> 设置菜单</h3>
-<ul>
-<li>修改<mark>主题配置文件</mark></li>
-</ul>
+<p>修改<mark>主题配置文件</mark></p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404.html</span> <span class="string">||</span> <span class="string">heartbeat</span></span><br></pre></td></tr></table></figure>
 <h3 id="设置头像"><a class="markdownIt-Anchor" href="#设置头像"></a> 设置头像</h3>
-<ul>
-<li>修改<mark>主题配置文件</mark></li>
-</ul>
+<p>修改<mark>主题配置文件</mark></p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be dispalyed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <h3 id="设置进度条"><a class="markdownIt-Anchor" href="#设置进度条"></a> 设置进度条</h3>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Reading progress bar</span></span><br><span class="line"><span class="attr">reading_progress:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Available values: top | bottom</span></span><br><span class="line">  <span class="attr">position:</span> <span class="string">top</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">"#37c6c0"</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">3px</span></span><br></pre></td></tr></table></figure>
@@ -123,9 +131,7 @@
 </ol>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404.html</span> <span class="string">||</span> <span class="string">heartbeat</span></span><br></pre></td></tr></table></figure>
 <h3 id="侧边栏社交链接"><a class="markdownIt-Anchor" href="#侧边栏社交链接"></a> 侧边栏社交链接</h3>
-<ul>
-<li>修改<mark>主题配置文件</mark></li>
-</ul>
+<p>修改<mark>主题配置文件</mark></p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/zlx01</span> <span class="string">||</span> <span class="string">github</span></span><br><span class="line">  <span class="attr">CSDN:</span> <span class="string">https://blog.csdn.net/Lee_01</span> <span class="string">||</span> <span class="string">book</span></span><br></pre></td></tr></table></figure>
 <h3 id="开启打赏功能"><a class="markdownIt-Anchor" href="#开启打赏功能"></a> 开启打赏功能</h3>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">reward:</span></span><br><span class="line">  <span class="attr">wechatpay:</span> <span class="string">/images/wechatpay.png</span></span><br><span class="line">  <span class="comment">#alipay: /images/alipay.png</span></span><br><span class="line">  <span class="comment">#paypal: /images/paypal.png</span></span><br><span class="line">  <span class="comment">#bitcoin: /images/bitcoin.png</span></span><br></pre></td></tr></table></figure>
@@ -133,8 +139,14 @@
 <p>新建 404.html 页面，放到主题的 <code>source</code> 目录下，内容如下：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset=utf-8;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"index,follow"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"https://qzone.qq.com/gy/404/style/404style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/plain"</span> <span class="attr">src</span>=<span class="string">"http://www.qq.com/404/search_children.js"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">homePageUrl</span>=<span class="string">"/"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">homePageName</span>=<span class="string">"回到我的主页"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://qzone.qq.com/gy/404/data.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://qzone.qq.com/gy/404/page.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="添加动态背景粒子漂浮聚合"><a class="markdownIt-Anchor" href="#添加动态背景粒子漂浮聚合"></a> 添加动态背景—粒子漂浮聚合</h3>
+<ul>
+<li>
 <p><a href="https://github.com/theme-next/theme-next-canvas-nest" target="_blank" rel="noopener">参考链接</a></p>
+</li>
+<li>
 <p>在站点目录的<code>source</code>目录下新建<code>_data</code>目录，在<code>_data</code>目录下新建<code>footer.swig</code>文件，内容如下</p>
+</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script color&#x3D;&quot;0,0,255&quot; opacity&#x3D;&quot;0.5&quot; zIndex&#x3D;&quot;-1&quot; count&#x3D;&quot;99&quot; src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;canvas-nest.js@1&#x2F;dist&#x2F;canvas-nest.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 <p>修改<mark>主题配置文件</mark>，打开footer注释</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="attr">footer:</span> <span class="string">source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="comment">#variable: source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="comment">#style: source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
@@ -261,6 +273,8 @@
 <h3 id="其他服务"><a class="markdownIt-Anchor" href="#其他服务"></a> 其他服务</h3>
 <p><a href="https://github.com/theme-next/awesome-next" target="_blank" rel="noopener">https://github.com/theme-next/awesome-next</a></p>
 <h2 id="部署到github"><a class="markdownIt-Anchor" href="#部署到github"></a> 部署到GitHub</h2>
+<h3 id="0安装自动部署插件"><a class="markdownIt-Anchor" href="#0安装自动部署插件"></a> 0.安装自动部署插件</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <h3 id="1新建仓库"><a class="markdownIt-Anchor" href="#1新建仓库"></a> 1.新建仓库</h3>
 <p>在GitHub新建公开仓库，仓库名字格式为：“<a href="http://username.github.io" target="_blank" rel="noopener">username.github.io</a>”，我的是<code>zlx01.github.io</code></p>
 <h3 id="2修改站点配置文件-2"><a class="markdownIt-Anchor" href="#2修改站点配置文件-2"></a> 2.修改<mark>站点配置文件</mark></h3>
@@ -274,6 +288,16 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lancekee.xyz</span><br></pre></td></tr></table></figure>
 <h4 id="域名解析配置"><a class="markdownIt-Anchor" href="#域名解析配置"></a> 域名解析配置</h4>
 <img src="/2020/03/18/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" class="">
+<h3 id="4访问-2"><a class="markdownIt-Anchor" href="#4访问-2"></a> 4.访问</h3>
+<p><a href="https://zlx01.github.io">https://zlx01.github.io</a> 或 <a href="http://lancekee.xyz" target="_blank" rel="noopener">http://lancekee.xyz</a></p>
+<h2 id="部署到gitee"><a class="markdownIt-Anchor" href="#部署到gitee"></a> 部署到Gitee</h2>
+<p>1.新建公开的同名仓库</p>
+<p>2.修改站点配置文件</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:lancekee/lancekee.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>3.保存后<code>hexo d</code></p>
+<p>4.开启Gitee Page服务</p>
+<img src="/2020/03/18/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/gitee.png" class="">
+<p>5.访问 <a href="https://lancekee.gitee.io" target="_blank" rel="noopener">https://lancekee.gitee.io</a></p>
 <h2 id="写博客"><a class="markdownIt-Anchor" href="#写博客"></a> 写博客</h2>
 <h3 id="在站点目录新建页面"><a class="markdownIt-Anchor" href="#在站点目录新建页面"></a> 在站点目录新建页面</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">'my-first-blog'</span></span><br></pre></td></tr></table></figure>
